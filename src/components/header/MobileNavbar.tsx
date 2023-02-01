@@ -4,8 +4,8 @@ import { AiFillFire, AiOutlinePieChart, AiOutlineUser } from "react-icons/ai";
 import { MdCompareArrows } from "react-icons/md";
 import { VscGraphLine } from "react-icons/vsc";
 import styled from "styled-components";
-import { AuthContext } from "../contexts/AuthContext";
-import NavLink from "./NavLink";
+import { AuthContext } from "../../contexts/AuthContext";
+import NavLinkWithActive from "../NavLinkWithActive";
 
 //  Styles
 const Nav = styled.nav`
@@ -62,36 +62,36 @@ const MobileNavbar = () => {
     <Nav>
       <Ul>
         <Li>
-          <NavLink href="/">
+          <NavLinkWithActive href="/">
             <AuthIcon Icon={VscGraphLine} />
             <Span>Markets</Span>
-          </NavLink>
+          </NavLinkWithActive>
         </Li>
         <Li>
-          <NavLink href="/trending">
+          <NavLinkWithActive href="/trending">
             <AuthIcon Icon={AiFillFire} />
             <Span>Trending</Span>
-          </NavLink>
+          </NavLinkWithActive>
         </Li>
         <Li>
-          <NavLink href="/compare">
+          <NavLinkWithActive href="/compare">
             <AuthIcon Icon={MdCompareArrows} />
             <Span>Compare</Span>
-          </NavLink>
+          </NavLinkWithActive>
         </Li>
         {user.isLoggedIn && (
           <>
             <Li>
-              <NavLink href="/portfolio">
+              <NavLinkWithActive href="/portfolio">
                 <AuthIcon Icon={AiOutlinePieChart} />
                 <Span>Portfolio</Span>
-              </NavLink>
+              </NavLinkWithActive>
             </Li>
             <Li>
-              <NavLink href="/profile">
+              <NavLinkWithActive href="/profile">
                 <AuthIcon Icon={AiOutlineUser} />
                 <Span>Profile</Span>
-              </NavLink>
+              </NavLinkWithActive>
             </Li>
           </>
         )}

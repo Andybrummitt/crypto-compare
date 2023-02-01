@@ -1,6 +1,7 @@
 import React from "react";
-import DesktopNavbar from "./DesktopNavbar";
-import MobileNavbar from "./MobileNavbar";
+import DesktopHeader from "./header/DesktopHeader";
+import MobileHeader from "./header/MobileHeader";
+import MobileNavbar from "./header/MobileNavbar";
 
 interface LayoutProps {
   children: React.ReactNode;
@@ -9,8 +10,11 @@ interface LayoutProps {
 const Layout: React.FC<LayoutProps> = ({ children }) => {
   return (
     <>
+      {/* Display at mobile width */}
+      <MobileHeader />
       <MobileNavbar />
-      <DesktopNavbar />
+      {/* Display at desktop/tablet width */}
+      <DesktopHeader />
       <main>{children}</main>
     </>
   );

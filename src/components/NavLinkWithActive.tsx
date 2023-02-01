@@ -10,9 +10,13 @@ const StyledLink = styled.a`
   justify-content: center;
   align-items: center;
   color: #6c757d;
+  &.active {
+    font-weight: bold;
+    color: var(--primary);
+  }
 `;
 
-const NavLink = ({
+const NavLinkWithActive = ({
   href,
   children,
 }: {
@@ -29,4 +33,4 @@ const NavLink = ({
   );
 };
 
-export default NavLink;
+export default NavLinkWithActive;

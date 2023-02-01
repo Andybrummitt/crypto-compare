@@ -1,7 +1,8 @@
 @import url("https://fonts.googleapis.com/css2?family=Poppins&display=swap");
 
 :root {
-  --primary: #0063F5
+  --primary: #0063f5;
+  --red: #d90429;
 }
 
 * {
@@ -20,4 +21,3 @@ body {
 a {
   text-decoration: none;
 }
-

@@ -1,18 +1,19 @@
 import { useContext, useEffect } from "react";
 import { AiOutlinePieChart, AiOutlineUser } from "react-icons/ai";
 import styled from "styled-components";
-import { AuthContext } from "../contexts/AuthContext";
+import { AuthContext } from "../../contexts/AuthContext";
+import NavLinkWithActive from "../NavLinkWithActive";
 import { AuthIcon } from "./MobileNavbar";
-import NavLink from "./NavLink";
 
 //  Styles
 const Nav = styled.nav`
   background: #ffffff;
   height: 4rem;
   display: flex;
-  @media (max-width: 700px) {
-    display: none;
-  }
+`;
+
+const LinksContainer = styled.div`
+  display: flex;
 `;
 
 const MarketsUl = styled.ul`
@@ -47,11 +48,11 @@ const Span = styled.span`
   }
 `;
 
-const Button = styled.button`
+export const Button = styled.button`
   color: white;
   border-radius: 0.5rem;
   font-weight: bold;
-  background: linear-gradient(to bottom, #0063F5, #1E90FF);
+  background: linear-gradient(to bottom, #0063f5, #1e90ff);
   padding: 0.5rem;
   width: 5rem;
   border: none;
@@ -69,51 +70,51 @@ const DesktopNavbar = () => {
     <Nav>
       <MarketsUl>
         <Li>
-          <NavLink href="/">
+          <NavLinkWithActive href="/">
             <Span>Markets</Span>
-          </NavLink>
+          </NavLinkWithActive>
         </Li>
         <Li>
-          <NavLink href="/trending">
+          <NavLinkWithActive href="/trending">
             <Span>Trending</Span>
-          </NavLink>
+          </NavLinkWithActive>
         </Li>
         <Li>
-          <NavLink href="/compare">
+          <NavLinkWithActive href="/compare">
             <Span>Compare</Span>
-          </NavLink>
+          </NavLinkWithActive>
         </Li>
       </MarketsUl>
       {user.isLoggedIn ? (
         <AuthUl>
           <Li>
-            <NavLink href="/portfolio">
+            <NavLinkWithActive href="/portfolio">
               <AuthIcon Icon={AiOutlinePieChart} />
               <Span>Portfolio</Span>
-            </NavLink>
+            </NavLinkWithActive>
           </Li>
           <Li>
-            <NavLink href="/profile">
+            <NavLinkWithActive href="/profile">
               <AuthIcon Icon={AiOutlineUser} />
               <Span>Profile</Span>
-            </NavLink>
+            </NavLinkWithActive>
           </Li>
         </AuthUl>
       ) : (
         <AuthUl>
           <Li>
-            <NavLink href="/login">
+            <NavLinkWithActive href="/login">
               <Button>
                 <Span>Log In</Span>
               </Button>
-            </NavLink>
+            </NavLinkWithActive>
           </Li>
           <Li>
-            <NavLink href="/signup">
+            <NavLinkWithActive href="/signup">
               <Button>
                 <Span>Sign Up</Span>
               </Button>
-            </NavLink>
+            </NavLinkWithActive>
           </Li>
         </AuthUl>
       )}
