@@ -62,7 +62,7 @@ const TableComponent: React.FC<Props> = ({ coins }) => {
         </THead>
         <tbody>
           {coins.map((coin) => (
-            <TableRow key={coin.market_cap_rank} coin={coin} />
+            <TableRow key={coin.id} coin={coin} />
           ))}
         </tbody>
       </Table>

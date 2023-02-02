@@ -57,8 +57,8 @@ const SecondTDSticky = styled(FirstTDSticky)`
 //  Component
 
 const TableRow: React.FC<Props> = ({ coin }) => {
-  const percentage24h = coin.market_cap_change_percentage_24h.toFixed(2);
-  const percentageATH = coin.ath_change_percentage.toFixed(2);
+  const percentage24h = coin.market_cap_change_percentage_24h?.toFixed(2);
+  const percentageATH = coin.ath_change_percentage?.toFixed(2);
 
   //  Show price with suffixes
   function convertPriceToUnits(num) {
@@ -93,7 +93,7 @@ const TableRow: React.FC<Props> = ({ coin }) => {
   };
 
   return (
-    <tr key={coin.id}>
+    <tr>
       <FirstTDSticky>{coin.market_cap_rank}</FirstTDSticky>
       <SecondTDSticky>
         <CoinContainer>

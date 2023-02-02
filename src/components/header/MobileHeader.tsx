@@ -36,7 +36,7 @@ const MobileHeader = () => {
         </NavLink>
         <div>
           <NavLink href="/login">
-            <Button>Login</Button>
+            <Button>Log In</Button>
           </NavLink>
           <NavLink href="signup">
             <Button>Sign Up</Button>

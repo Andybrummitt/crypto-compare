@@ -105,14 +105,14 @@ const DesktopNavbar = () => {
           <Li>
             <NavLinkWithActive href="/login">
               <Button>
-                <Span>Log In</Span>
+                <Span role="button">Log In</Span>
               </Button>
             </NavLinkWithActive>
           </Li>
           <Li>
             <NavLinkWithActive href="/signup">
               <Button>
-                <Span>Sign Up</Span>
+                <Span role="button">Sign Up</Span>
               </Button>
             </NavLinkWithActive>
           </Li>

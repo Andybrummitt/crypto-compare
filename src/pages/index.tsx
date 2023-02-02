@@ -3,6 +3,7 @@ import { GetServerSideProps } from "next";
 import Head from "next/head";
 import Layout from "../components/Layout";
 import TableComponent from "../components/marketTable/Table";
+import styled from "styled-components";
 
 export type Coin = {
   market_cap_rank: number;
@@ -23,7 +24,23 @@ type Props = {
   error?: string;
 };
 
+const H1 = styled.h1`
+  font-size: 1.5rem;
+  margin: 1rem 0;
+  text-align: center;
+  @media(min-width: 700px){
+    font-size: 2rem;
+  }
+`
+
+export const ErrorMessage = styled.p`
+  color: red;
+  font-weight: bold;
+  text-align: center;
+`
+
 const HomePage: React.FC<Props> = ({ coins, error }) => {
+  
   return (
     <>
       <Head>
@@ -36,7 +53,8 @@ const HomePage: React.FC<Props> = ({ coins, error }) => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <Layout>
-        {error ? <p>{error}</p> : <TableComponent coins={coins} />}
+        <H1>Top 100 Coins</H1>
+        {error ? <ErrorMessage>{error}</ErrorMessage> : <TableComponent coins={coins} />}
       </Layout>
     </>
   );
@@ -46,7 +64,7 @@ export const getServerSideProps: GetServerSideProps<Props> = async () => {
   let coins = [];
   try {
     const res = await axios.get(
-      "https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&order=market_cap_desc&per_page=50&page=1&sparkline=false"
+      "https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&order=market_cap_desc&per_page=100&page=1&sparkline=false"
     );
     coins = res.data as Coin[];
     return {
@@ -56,7 +74,7 @@ export const getServerSideProps: GetServerSideProps<Props> = async () => {
     };
     
   } catch (error) {
-    console.error(error)
+    console.log(error)
     return {
       props: {
         coins: null,
