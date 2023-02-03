@@ -55,7 +55,7 @@ const TrendingTableRow: React.FC<Props> = ({ coin, btcPrice }) => {
           </div>
         </CoinContainer>
       </TD>
-      <TD>{`$${btcPrice ? bitcoinToUsd(coin.price_btc, btcPrice).toFixed(5) : 'N/A'}`}</TD>
+      <TD>{btcPrice ? `$${bitcoinToUsd(coin.price_btc, btcPrice).toFixed(5)}` : 'N/A'}</TD>
     </tr>
   );
 };

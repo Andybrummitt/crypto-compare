@@ -135,7 +135,7 @@ const TrendingPage: React.FC<Props> = ({
 export const getServerSideProps: GetServerSideProps<Props> = async () => {
   try {
     const response = await axios.get("https://api.coingecko.com/api/v3/global");
-    let { data } = response?.data;
+    let { data } = response.data;
     const trendingResponse = await axios.get(
       "https://api.coingecko.com/api/v3/search/trending"
     );
