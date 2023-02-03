@@ -54,33 +54,35 @@ const SecondTDSticky = styled(FirstTDSticky)`
     padding: 0.5rem 0.5rem 0 0.5rem;  
 `;
 
+//  Show price with suffixes
+
+export function convertPriceToUnits(num) {
+  if (num >= 1000000000) {
+    return (num / 1000000000).toFixed(1) + " Billion";
+  } else if (num >= 1000000) {
+    return (num / 1000000).toFixed(1) + " Million";
+  } else if (num >= 1000) {
+    return (num / 1000).toFixed(1) + "K";
+  } else {
+    return false;
+  }
+}
+
+//  Get CSS Class depending on market move
+
+export const percentageMove = (percentage) => {
+  if (percentage > 0) {
+    return "up";
+  } else if (percentage < 0) {
+    return "down";
+  } else return "";
+};
+
 //  Component
 
-const TableRow: React.FC<Props> = ({ coin }) => {
+const Top100TableRow: React.FC<Props> = ({ coin }) => {
   const percentage24h = coin.market_cap_change_percentage_24h?.toFixed(2);
   const percentageATH = coin.ath_change_percentage?.toFixed(2);
-
-  //  Show price with suffixes
-  function convertPriceToUnits(num) {
-    if (num >= 1000000000) {
-      return (num / 1000000000).toFixed(1) + " Billion";
-    } else if (num >= 1000000) {
-      return (num / 1000000).toFixed(1) + " Million";
-    } else if (num >= 1000) {
-      return (num / 1000).toFixed(1) + "K";
-    } else {
-      return false;
-    }
-  }
-
-  //  Get CSS Class depending on market move
-  const percentageMove = (percentage) => {
-    if (percentage > 0) {
-      return "up";
-    } else if (percentage < 0) {
-      return "down";
-    } else return "";
-  };
 
   //  Get % of Diluted Market Cap
   const getDilutionPercentage = (circSupply, maxSupply) => {
@@ -130,4 +132,4 @@ const TableRow: React.FC<Props> = ({ coin }) => {
   );
 };
 
-export default TableRow;
+export default Top100TableRow;

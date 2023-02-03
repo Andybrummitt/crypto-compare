@@ -1,9 +1,9 @@
 import axios from "axios";
 import { GetServerSideProps } from "next";
 import Head from "next/head";
-import Layout from "../components/Layout";
-import TableComponent from "../components/marketTable/Table";
 import styled from "styled-components";
+import Layout from "../components/Layout";
+import Top100Table from "../components/marketTable/Top100Table";
 
 export type Coin = {
   market_cap_rank: number;
@@ -28,19 +28,18 @@ const H1 = styled.h1`
   font-size: 1.5rem;
   margin: 1rem 0;
   text-align: center;
-  @media(min-width: 700px){
+  @media (min-width: 700px) {
     font-size: 2rem;
   }
-`
+`;
 
 export const ErrorMessage = styled.p`
   color: red;
   font-weight: bold;
   text-align: center;
-`
+`;
 
 const HomePage: React.FC<Props> = ({ coins, error }) => {
-  
   return (
     <>
       <Head>
@@ -54,7 +53,11 @@ const HomePage: React.FC<Props> = ({ coins, error }) => {
       </Head>
       <Layout>
         <H1>Top 100 Coins</H1>
-        {error ? <ErrorMessage>{error}</ErrorMessage> : <TableComponent coins={coins} />}
+        {error ? (
+          <ErrorMessage>{error}</ErrorMessage>
+        ) : (
+          <Top100Table coins={coins} />
+        )}
       </Layout>
     </>
   );
@@ -72,17 +75,15 @@ export const getServerSideProps: GetServerSideProps<Props> = async () => {
         coins,
       },
     };
-    
   } catch (error) {
-    console.log(error)
+    console.log(error);
     return {
       props: {
         coins: null,
-        error: 'Oops! Unable to fetch market data'
-    }
+        error: "Oops! Unable to fetch market data",
+      },
+    };
   }
-}
-
 };
 
 export default HomePage;
