@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { convertPriceToUnits } from "../components/marketTable/Top100TableRow";
+import { convertPriceToUnits } from "../utils/marketCalculations";
 
 const Ul = styled.ul`
   margin-left: auto;

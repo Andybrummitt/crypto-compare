@@ -27,7 +27,6 @@ type Props = {
 };
 
 const Top100Table: React.FC<Props> = ({ coins }) => {
-  console.log(coins)
   return (
     <Container>
       <Table>

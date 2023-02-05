@@ -2,8 +2,9 @@
 const nextConfig = {
   reactStrictMode: true,
   images: {
-    domains: ['assets.coingecko.com'],
+    domains: ["assets.coingecko.com"],
   },
-}
+  productionBrowserSourceMaps: true,
+};
 
-module.exports = nextConfig
+module.exports = nextConfig;

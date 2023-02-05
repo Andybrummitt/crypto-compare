@@ -1,6 +1,10 @@
 import Image from "next/image";
 import styled from "styled-components";
 import { Coin } from "../../pages/index";
+import {
+  convertPriceToUnits,
+  getPriceDirection,
+} from "../../utils/marketCalculations";
 
 type Props = {
   coin: Coin;
@@ -8,7 +12,7 @@ type Props = {
 
 //  Styles
 
-const PercentageContainer = styled.div`
+export const PercentageContainer = styled.div`
   &.up {
     color: #4eaf0a;
   }
@@ -50,33 +54,9 @@ const FirstTDSticky = styled.td`
 `;
 
 const SecondTDSticky = styled(FirstTDSticky)`
-    left: 4%;
-    padding: 0.5rem 0.5rem 0 0.5rem;  
+  left: 4%;
+  padding: 0.5rem 0.5rem 0 0.5rem;
 `;
-
-//  Show price with suffixes
-
-export function convertPriceToUnits(num) {
-  if (num >= 1000000000) {
-    return (num / 1000000000).toFixed(1) + " Billion";
-  } else if (num >= 1000000) {
-    return (num / 1000000).toFixed(1) + " Million";
-  } else if (num >= 1000) {
-    return (num / 1000).toFixed(1) + "K";
-  } else {
-    return false;
-  }
-}
-
-//  Get CSS Class depending on market move
-
-export const percentageMove = (percentage) => {
-  if (percentage > 0) {
-    return "up";
-  } else if (percentage < 0) {
-    return "down";
-  } else return "";
-};
 
 //  Component
 
@@ -86,7 +66,7 @@ const Top100TableRow: React.FC<Props> = ({ coin }) => {
 
   //  Get % of Diluted Market Cap
   const getDilutionPercentage = (circSupply, maxSupply) => {
-    if(circSupply && maxSupply){
+    if (circSupply && maxSupply) {
       const decimalValue = maxSupply / circSupply;
       const percentValue = (decimalValue * 100).toFixed(2);
       return percentValue;
@@ -113,21 +93,23 @@ const Top100TableRow: React.FC<Props> = ({ coin }) => {
       </SecondTDSticky>
       <TD>${coin.current_price}</TD>
       <TD>
-        <PercentageContainer className={`${percentageMove(percentage24h)}`}>
+        <PercentageContainer
+          className={`${getPriceDirection(parseFloat(percentage24h))}`}
+        >
           <span>{percentage24h}%</span>
         </PercentageContainer>
       </TD>
       <TD>
-        <PercentageContainer className={`${percentageMove(percentageATH)}`}>
+        <PercentageContainer
+          className={`${getPriceDirection(parseFloat(percentageATH))}`}
+        >
           <span>{percentageATH}%</span>
         </PercentageContainer>
       </TD>
       <TD>{convertPriceToUnits(coin.market_cap)}</TD>
       <TD>{convertPriceToUnits(coin.circulating_supply)}</TD>
       <TD>{convertPriceToUnits(coin.max_supply)}</TD>
-      <TD>
-        {getDilutionPercentage(coin.max_supply, coin.circulating_supply)}
-      </TD>
+      <TD>{getDilutionPercentage(coin.max_supply, coin.circulating_supply)}</TD>
     </tr>
   );
 };
