@@ -3,6 +3,7 @@ import { GetServerSideProps } from "next";
 import Head from "next/head";
 import { useEffect, useState } from "react";
 import CoinsContainer from "../components/compare/CoinsContainer";
+import ComparisonInfo from "../components/compare/ComparisonInfo";
 import Layout from "../components/Layout";
 import { ErrorMessage } from "./index";
 
@@ -92,10 +93,13 @@ const ComparePage: React.FC<Props> = ({ coins, error }) => {
       <Layout>
         {errorMessage && <ErrorMessage>{errorMessage}</ErrorMessage>}
         {coinsToCompare.coin1 && coinsToCompare.coin2 ? (
-          <CoinsContainer
-            coins={coinsToCompare}
-            setCoinsToCompare={setCoinsToCompare}
-          />
+          <>
+            <CoinsContainer
+              coins={coinsToCompare}
+              setCoinsToCompare={setCoinsToCompare}
+            />
+            <ComparisonInfo coins={coinsToCompare} />
+          </>
         ) : null}
       </Layout>
     </>

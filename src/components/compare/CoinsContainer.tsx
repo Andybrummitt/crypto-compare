@@ -1,4 +1,5 @@
 import React, { Dispatch } from "react";
+import styled from "styled-components";
 import { Coin } from "../../pages/compare";
 import SingleCoinContainer from "./SingleCoinContainer";
 
@@ -9,9 +10,16 @@ type Props = {
   >;
 };
 
+const Div = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+`;
+
 const CoinsContainer: React.FC<Props> = ({ coins, setCoinsToCompare }) => {
   return (
-    <div>
+    <Div>
       <SingleCoinContainer
         coin={coins.coin1}
         coins={coins}
@@ -22,7 +30,7 @@ const CoinsContainer: React.FC<Props> = ({ coins, setCoinsToCompare }) => {
         coins={coins}
         setCoinsToCompare={setCoinsToCompare}
       />
-    </div>
+    </Div>
   );
 };
 

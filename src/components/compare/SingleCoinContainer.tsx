@@ -17,6 +17,16 @@ type Props = {
 
 //  Styles
 
+const Container = styled.div`
+  padding: 0.25rem;
+  border-radius: 0.5rem;
+  box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.19), 0px 6px 6px rgba(0, 0, 0, 0.23);
+  margin: 1rem auto;
+  background-color: var(--light-blue);
+  width: 95%;
+  max-width: 500px;
+`;
+
 const HeadingContainer = styled.div`
   display: flex;
   align-items: center;
@@ -25,18 +35,14 @@ const HeadingContainer = styled.div`
   }
 `;
 
-const Container = styled.div`
-  padding: 0.25rem;
-  border-radius: 0.5rem;
-  box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.19), 0px 6px 6px rgba(0, 0, 0, 0.23);
-  margin: 1rem auto;
-  width: 95%;
-`;
-
 const StatsUl = styled.div`
   & > li {
     list-style-type: none;
   }
+`;
+
+const BoldSpan = styled.span`
+  font-weight: bold;
 `;
 
 const CategoriesUl = styled.ul`
@@ -51,6 +57,22 @@ const CategoriesUl = styled.ul`
     background: var(--primary);
     margin: 0.25rem;
     font-size: 0.8rem;
+  }
+`;
+
+const Form = styled.form`
+  margin: 0.5rem 0;
+  & > input {
+    margin: 0 0.25rem;
+    border: none;
+    padding: 0.25rem;
+  }
+  & > button {
+    background: var(--dark-blue);
+    padding: 0.35rem;
+    border-radius: 0.25rem;
+    border: none;
+    color: white;
   }
 `;
 
@@ -88,7 +110,7 @@ const SingleCoinContainer: React.FC<Props> = ({
       if (coinNum === 1) {
         setCoinsToCompare((coins) => ({ ...coins, coin1: newCoinData }));
       } else if (coinNum === 2) {
-        setCoinsToCompare((coins) => ({ ...coins, coin1: newCoinData }));
+        setCoinsToCompare((coins) => ({ ...coins, coin2: newCoinData }));
       }
     } catch (err) {
       console.log(err);
@@ -115,7 +137,7 @@ const SingleCoinContainer: React.FC<Props> = ({
           <li>{category}</li>
         ))}
       </CategoriesUl>
-      <form onSubmit={handleSubmit}>
+      <Form onSubmit={handleSubmit}>
         <label>Select a Coin</label>
         <input
           type="text"
@@ -123,17 +145,18 @@ const SingleCoinContainer: React.FC<Props> = ({
           value={coinInput}
         />
         <button type="submit">Submit</button>
-      </form>
+      </Form>
       {reqError && <ErrorMessage>{reqError}</ErrorMessage>}
       <StatsUl>
         <li>
-          Market Cap: <span>{convertPriceToUnits(coin.market_cap.usd)}</span>
+          Market Cap:{" "}
+          <BoldSpan>{convertPriceToUnits(coin.market_cap.usd)}</BoldSpan>
         </li>
         <li>
-          Market Cap Rank: <span>{coin.market_cap_rank}</span>
+          Market Cap Rank: <BoldSpan>{coin.market_cap_rank}</BoldSpan>
         </li>
         <li>
-          Price: $<span>{coin.current_price.usd}</span>
+          Price: $<BoldSpan>{coin.current_price.usd}</BoldSpan>
         </li>
       </StatsUl>
       <PriceActivityContainer coin={coin} />

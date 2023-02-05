@@ -3,6 +3,10 @@
 :root {
   --primary: #0063f5;
   --red: #d90429;
+  --light-blue: #ecf4ff;
+  --dark-blue: #203ed6;
+  --orange: #ff6d00;
+  --light-red: #ffebee;
 }
 
 * {

@@ -5,15 +5,16 @@ interface ButtonProps {
 }
 
 const Button = styled.button<ButtonProps>`
-  background-color: ${(props) => (props.selected ? "#0074D9" : "#fff")};
-  color: ${(props) => (props.selected ? "#fff" : "#0074D9")};
-  border: 1px solid #0074d9;
+  background-color: ${(props) => (props.selected ? "var(--orange)" : "#fff")};
+  color: ${(props) => (props.selected ? "#fff" : "var(--orange)")};
+  border: 1px solid var(--orange);
+  margin: 0.25rem;
   border-radius: 5px;
-  padding: 0.5rem;
+  padding: 0.25rem;
   outline: none;
   cursor: pointer;
   &:hover {
-    background-color: #0074d9;
+    background-color: var(--orange);
     color: #fff;
   }
 `;
