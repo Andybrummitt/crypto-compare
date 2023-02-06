@@ -1,4 +1,6 @@
 import React from "react";
+import { BsFillMoonFill, BsGraphUp } from "react-icons/bs";
+import { SlUserFollowing } from "react-icons/sl";
 import styled from "styled-components";
 import { Coin } from "../../pages/compare";
 
@@ -10,7 +12,7 @@ const Container = styled.div`
   margin: 1rem auto 5rem auto;
   width: 95%;
   max-width: 900px;
-  background-color: var(--light-red);
+  background: #f8f8f8;
   padding: 1rem;
   border-radius: 0.5rem;
   box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.19), 0px 6px 6px rgba(0, 0, 0, 0.23);
@@ -23,8 +25,25 @@ const InnerContainer = styled.div`
 `;
 
 const Heading = styled.h2`
-  margin: 1rem 0;
+  margin-bottom: 1rem;
+  padding: 1rem 0;
+  border-radius: 0.25rem;
+  color: white;
   text-align: center;
+  background: var(--primary);
+`;
+
+const SubHeadingContainer = styled.div`
+  display: flex;
+  background: yellow;
+  width: 100%;
+  padding: 0.25rem;
+  background: var(--red);
+  border-radius: 0.15rem;
+  color: white;
+  & > h3 {
+    margin-right: 0.5rem;
+  }
 `;
 
 const Div = styled.div`
@@ -40,10 +59,8 @@ const BoldSpan = styled.span`
 `;
 
 const MultipleContainer = styled.span`
-  background: var(--red);
-  padding: 0.1rem;
-  margin: 0.1rem;
-  color: white;
+  color: var(--red);
+  font-weight: bold;
 `;
 
 const returnHigherData = (coins, method: string) => {
@@ -94,13 +111,15 @@ const ComparisonInfo: React.FC<Props> = ({ coins }) => {
   const xToATHCoin2 = getMultipleBackToATH(
     Math.abs(coin2.ath_change_percentage.usd)
   );
-  console.log(coin1);
   return (
     <Container>
       <Heading>Comparison Data</Heading>
       <InnerContainer>
         <Div>
-          <h3>Recent Price Performance</h3>
+          <SubHeadingContainer>
+            <h3>Recent Price Performance</h3>
+            <BsGraphUp />
+          </SubHeadingContainer>
           <p>
             <BoldSpan>1 day:</BoldSpan>{" "}
             {returnHigherData(coins, "price_change_percentage_24h")}
@@ -119,19 +138,25 @@ const ComparisonInfo: React.FC<Props> = ({ coins }) => {
           </p>
         </Div>
         <Div>
-          <h3>Moonshot Potential</h3>
+          <SubHeadingContainer>
+            <h3>Moonshot Potential</h3>
+            <BsFillMoonFill />
+          </SubHeadingContainer>
           <p>
             $100 Investment today in {coin1.name} back to ATH returns a{" "}
-            <MultipleContainer> {xToATHCoin1}x</MultipleContainer>
-            to <BoldSpan>${100 * xToATHCoin1}</BoldSpan>.
+            <MultipleContainer> {xToATHCoin1}x</MultipleContainer> to{" "}
+            <BoldSpan>${100 * xToATHCoin1}</BoldSpan>.
           </p>
           <p>
             $100 Investment today in {coin2.name} back to ATH returns{" "}
-            <MultipleContainer>{xToATHCoin2}x</MultipleContainer>
-            to <BoldSpan>${100 * xToATHCoin2}</BoldSpan>.
+            <MultipleContainer>{xToATHCoin2}x</MultipleContainer> to{" "}
+            <BoldSpan>${100 * xToATHCoin2}</BoldSpan>.
           </p>
           <br />
-          <h3>Popularity</h3>
+          <SubHeadingContainer>
+            <h3>Popularity</h3>
+            <SlUserFollowing />
+          </SubHeadingContainer>
           <p>
             <BoldSpan>Market Cap:</BoldSpan> {returnHigherMarketCap(coins)}
           </p>

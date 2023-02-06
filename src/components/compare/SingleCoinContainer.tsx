@@ -22,7 +22,7 @@ const Container = styled.div`
   border-radius: 0.5rem;
   box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.19), 0px 6px 6px rgba(0, 0, 0, 0.23);
   margin: 1rem auto;
-  background-color: var(--light-blue);
+  background: linear-gradient(to right, #e0f2f1, #ffffff);
   width: 95%;
   max-width: 500px;
 `;
@@ -64,7 +64,8 @@ const Form = styled.form`
   margin: 0.5rem 0;
   & > input {
     margin: 0 0.25rem;
-    border: none;
+    border: 1px solid #333;
+    border-radius: 0.15rem;
     padding: 0.25rem;
   }
   & > button {
@@ -86,7 +87,6 @@ const SingleCoinContainer: React.FC<Props> = ({
   const [coinInput, setCoinInput] = useState("");
   const [coinNum, setCoinNum] = useState(0);
   const [reqError, setReqError] = useState("");
-  console.log(coin);
 
   useEffect(() => {
     if (coins.coin1 === coin) {
@@ -94,7 +94,7 @@ const SingleCoinContainer: React.FC<Props> = ({
     } else {
       setCoinNum(2);
     }
-  }, []);
+  }, [coin]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
