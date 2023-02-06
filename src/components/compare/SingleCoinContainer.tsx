@@ -2,6 +2,7 @@ import axios from "axios";
 import Image from "next/image";
 import { Dispatch, useEffect, useState } from "react";
 import styled from "styled-components";
+import { v4 as uuidv4 } from "uuid";
 import { Coin, createCoinDataObj } from "../../pages/compare";
 import { ErrorMessage } from "../../pages/index";
 import { convertPriceToUnits } from "../../utils/marketCalculations";
@@ -134,7 +135,7 @@ const SingleCoinContainer: React.FC<Props> = ({
       </div>
       <CategoriesUl>
         {coin.categories.map((category) => (
-          <li>{category}</li>
+          <li key={uuidv4()}>{category}</li>
         ))}
       </CategoriesUl>
       <Form onSubmit={handleSubmit}>
