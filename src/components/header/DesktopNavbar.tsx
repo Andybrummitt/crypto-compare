@@ -86,20 +86,20 @@ const DesktopNavbar = () => {
         </Li>
       </MarketsUl>
       {user.isLoggedIn ? (
-        <AuthUl>
-          <Li>
-            <NavLinkWithActive href="/portfolio">
-              <AuthIcon Icon={AiOutlinePieChart} />
-              <Span>Portfolio</Span>
-            </NavLinkWithActive>
-          </Li>
-          <Li>
-            <NavLinkWithActive href="/profile">
-              <AuthIcon Icon={AiOutlineUser} />
-              <Span>Profile</Span>
-            </NavLinkWithActive>
-          </Li>
-        </AuthUl>
+          <AuthUl>
+            <Li>
+              <NavLinkWithActive href="/portfolio">
+                <AuthIcon Icon={AiOutlinePieChart} />
+                <Span>Portfolio</Span>
+              </NavLinkWithActive>
+            </Li>
+            <Li>
+              <NavLinkWithActive href="/profile">
+                <AuthIcon Icon={AiOutlineUser} />
+                <Span>Profile</Span>
+              </NavLinkWithActive>
+            </Li>
+          </AuthUl>
       ) : (
         <AuthUl>
           <Li>

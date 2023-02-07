@@ -1,8 +1,9 @@
-import { createContext, Dispatch, SetStateAction, useState } from "react";
+import { createContext, Dispatch, SetStateAction } from "react";
 
 export type User = {
   isLoggedIn: boolean;
   userId: string | null;
+  email: string | null;
 };
 
 export interface UserContextInterface {
@@ -15,27 +16,10 @@ export interface UserContextInterface {
 const defaultState = {
   user: {
     isLoggedIn: false,
-    userId: "",
+    userId: null,
+    email: null,
   },
   setUser: (user: User) => {},
 } as UserContextInterface;
 
 export const AuthContext = createContext<UserContextInterface>(defaultState);
-
-//  Auth Provider Component
-
-type AuthProviderProps = {
-  children: React.ReactNode;
-};
-
-const AuthProvider = ({ children }: AuthProviderProps) => {
-  const [user, setUser] = useState<User>({ isLoggedIn: false, userId: "" });
-
-  return (
-    <AuthContext.Provider value={{ user, setUser }}>
-      {children}
-    </AuthContext.Provider>
-  );
-};
-
-export default AuthProvider;

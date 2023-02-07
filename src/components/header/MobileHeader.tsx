@@ -1,4 +1,6 @@
+import { useContext } from "react";
 import styled from "styled-components";
+import { AuthContext } from "../../contexts/AuthContext";
 import NavLink from "../NavLink";
 import BrandingContainer from "./BrandingContainer";
 import { Button } from "./DesktopNavbar";
@@ -28,20 +30,23 @@ const LinksContainer = styled.div`
 `;
 
 const MobileHeader = () => {
+  const { user } = useContext(AuthContext);
   return (
     <Header>
       <LinksContainer>
         <NavLink href="/">
           <Logo>CryptoCompare</Logo>
         </NavLink>
-        <div>
-          <NavLink href="/login">
-            <Button>Log In</Button>
-          </NavLink>
-          <NavLink href="signup">
-            <Button>Sign Up</Button>
-          </NavLink>
-        </div>
+        {!user.isLoggedIn ? (
+          <div>
+            <NavLink href="/login">
+              <Button>Log In</Button>
+            </NavLink>
+            <NavLink href="signup">
+              <Button>Sign Up</Button>
+            </NavLink>
+          </div>
+        ) : null}
       </LinksContainer>
       <BrandingContainer />
     </Header>
