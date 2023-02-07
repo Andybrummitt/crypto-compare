@@ -12,14 +12,17 @@ import { ErrorMessage } from "./index";
 
 export const AuthContainer = styled.div`
   width: 95%;
-  max-width: 600px;
+  max-width: 400px;
   padding: 0.5rem;
   margin: 2rem auto;
   box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.19);
-  border-radius: 0.5rem;
+  border-radius: 1rem;
     0px 6px 6px rgba(0, 0, 0, 0.23);
   h1 {
     text-align: center;
+  }
+  @media(min-width: 550px){
+    padding: 1.5rem;
   }
   `;
 
@@ -76,6 +79,7 @@ const LogIn = () => {
 
   const handleSignIn = async (e: React.FormEvent) => {
     e.preventDefault();
+    setError("");
     const { error } = await supabase.auth.signInWithPassword({
       email,
       password,

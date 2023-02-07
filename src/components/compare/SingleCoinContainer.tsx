@@ -1,6 +1,6 @@
 import axios from "axios";
 import Image from "next/image";
-import { Dispatch, useEffect, useState } from "react";
+import { Dispatch, useEffect, useRef, useState } from "react";
 import styled from "styled-components";
 import { v4 as uuidv4 } from "uuid";
 import { Coin, createCoinDataObj } from "../../pages/compare";
@@ -89,9 +89,12 @@ const SingleCoinContainer: React.FC<Props> = ({
   const [coinNum, setCoinNum] = useState(0);
   const [reqError, setReqError] = useState("");
 
+  const inputRef = useRef(null);
+
   useEffect(() => {
     if (coins.coin1 === coin) {
       setCoinNum(1);
+      inputRef.current.focus();
     } else {
       setCoinNum(2);
     }
@@ -141,6 +144,7 @@ const SingleCoinContainer: React.FC<Props> = ({
       <Form onSubmit={handleSubmit}>
         <label>Select a Coin</label>
         <input
+          ref={inputRef}
           type="text"
           onChange={(e) => setCoinInput(e.target.value)}
           value={coinInput}
