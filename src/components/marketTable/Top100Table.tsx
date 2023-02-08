@@ -7,17 +7,21 @@ import Top100TableRow from "./Top100TableRow";
 //  Styles
 
 const Container = styled.div`
-  overflow: scroll;
+  overflow-x: scroll;
   width: 95%;
   max-width: 1024px;
   margin-left: auto;
   margin-right: auto;
   margin-bottom: 4rem;
+  @media (min-width: 1024px) {
+    overflow-x: hidden;
+  }
 `;
 
 const Table = styled.table`
   border-collapse: collapse;
   margin: 20px 0;
+  background: white;
 `;
 
 //  Component
@@ -30,7 +34,7 @@ const Top100Table: React.FC<Props> = ({ coins }) => {
   return (
     <Container>
       <Table>
-        <Top100TableHead/>
+        <Top100TableHead />
         <tbody>
           {coins.map((coin) => (
             <Top100TableRow key={coin.id} coin={coin} />

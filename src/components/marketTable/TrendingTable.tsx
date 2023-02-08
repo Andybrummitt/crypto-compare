@@ -1,6 +1,5 @@
 import React from "react";
 import styled from "styled-components";
-import { Coin } from "../../pages/index";
 import { TrendingCoin } from "../../pages/trending";
 import TrendingTableHead from "./TrendingTableHead";
 import TrendingTableRow from "./TrendingTableRow";
@@ -17,6 +16,7 @@ const Table = styled.table`
   margin: 20px 0;
   margin-left: auto;
   margin-right: auto;
+  background: white;
 `;
 
 //  Component
@@ -30,7 +30,7 @@ const TrendingTable: React.FC<Props> = ({ trendingCoins, btcPrice }) => {
   return (
     <Container>
       <Table>
-        <TrendingTableHead/>
+        <TrendingTableHead />
         <tbody>
           {trendingCoins.map((coin) => (
             <TrendingTableRow key={coin.id} coin={coin} btcPrice={btcPrice} />

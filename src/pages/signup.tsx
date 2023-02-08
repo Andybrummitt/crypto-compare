@@ -1,15 +1,14 @@
 import Head from "next/head";
 import Link from "next/link";
 import { useRouter } from "next/router";
-import React, { useContext, useEffect, useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
+import WithoutAuth from "../components/hoc/WithoutAuth";
 import Layout from "../components/Layout";
-import { AuthContext } from "../contexts/AuthContext";
 import supabase from "../utils/supabaseClient";
 import { ErrorMessage } from "./index";
 import { AuthContainer, Form, LinkToOtherAuth } from "./login";
 
 const SignUp = () => {
-  const { user } = useContext(AuthContext);
   const router = useRouter();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -18,11 +17,7 @@ const SignUp = () => {
   const emailInputRef = useRef(null);
 
   useEffect(() => {
-    if (user.isLoggedIn) {
-      router.push("/");
-    } else {
-      emailInputRef.current.focus();
-    }
+    emailInputRef.current.focus();
   }, []);
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -85,4 +80,4 @@ const SignUp = () => {
   );
 };
 
-export default SignUp;
+export default WithoutAuth(SignUp);

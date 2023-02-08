@@ -21,9 +21,9 @@ type Props = {
 const Container = styled.div`
   padding: 0.25rem;
   border-radius: 0.5rem;
-  box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.19), 0px 6px 6px rgba(0, 0, 0, 0.23);
+  box-shadow: var(--card-box-shadow);
   margin: 1rem auto;
-  background: linear-gradient(to right, #e0f2f1, #ffffff);
+  background: white;
   width: 95%;
   max-width: 500px;
 `;
@@ -70,6 +70,7 @@ const Form = styled.form`
     padding: 0.25rem;
   }
   & > button {
+    cursor: pointer;
     background: var(--dark-blue);
     padding: 0.35rem;
     border-radius: 0.25rem;
@@ -87,7 +88,7 @@ const SingleCoinContainer: React.FC<Props> = ({
 }) => {
   const [coinInput, setCoinInput] = useState("");
   const [coinNum, setCoinNum] = useState(0);
-  const [reqError, setReqError] = useState("");
+  const [fetchError, setFetchError] = useState("");
 
   const inputRef = useRef(null);
 
@@ -102,14 +103,20 @@ const SingleCoinContainer: React.FC<Props> = ({
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    if (coinInput.length < 1) {
+      setFetchError("Coin Required.");
+      return;
+    }
     try {
+      //  Parse input for API request
+      const parsedCoinInput = coinInput.replace(/ /g, "-");
       //  Get New Coin Data
       const responseNewCoin = await axios.get(
-        `https://api.coingecko.com/api/v3/coins/${coinInput}`
+        `https://api.coingecko.com/api/v3/coins/${parsedCoinInput}`
       );
       const newCoinData = createCoinDataObj(responseNewCoin.data);
       setCoinInput("");
-      setReqError("");
+      setFetchError("");
       //  Set New State depending on which coin has changed
       if (coinNum === 1) {
         setCoinsToCompare((coins) => ({ ...coins, coin1: newCoinData }));
@@ -119,7 +126,7 @@ const SingleCoinContainer: React.FC<Props> = ({
     } catch (err) {
       console.log(err);
       setCoinInput("");
-      setReqError(err.message);
+      setFetchError(err.message);
     }
   };
   return (
@@ -151,7 +158,7 @@ const SingleCoinContainer: React.FC<Props> = ({
         />
         <button type="submit">Submit</button>
       </Form>
-      {reqError && <ErrorMessage>{reqError}</ErrorMessage>}
+      {fetchError && <ErrorMessage>{fetchError}</ErrorMessage>}
       <StatsUl>
         <li>
           Market Cap:{" "}

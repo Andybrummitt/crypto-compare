@@ -15,7 +15,7 @@ const Container = styled.div`
   background: #f8f8f8;
   padding: 1rem;
   border-radius: 0.5rem;
-  box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.19), 0px 6px 6px rgba(0, 0, 0, 0.23);
+  box-shadow: var(--card-box-shadow);
 `;
 
 const InnerContainer = styled.div`

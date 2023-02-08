@@ -1,10 +1,10 @@
 import Head from "next/head";
 import Link from "next/link";
 import { useRouter } from "next/router";
-import React, { useContext, useEffect, useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import styled from "styled-components";
+import WithoutAuth from "../components/hoc/WithoutAuth";
 import Layout from "../components/Layout";
-import { AuthContext } from "../contexts/AuthContext";
 import supabase from "../utils/supabaseClient";
 import { ErrorMessage } from "./index";
 
@@ -15,7 +15,7 @@ export const AuthContainer = styled.div`
   max-width: 400px;
   padding: 0.5rem;
   margin: 2rem auto;
-  box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.19);
+  box-shadow: var(--card-box-shadow);
   border-radius: 1rem;
     0px 6px 6px rgba(0, 0, 0, 0.23);
   h1 {
@@ -33,6 +33,7 @@ export const Form = styled.form`
     margin: 1rem 0;
     & > input {
       padding: 0.25rem;
+      font-size: 1rem;
       border: 1px solid var(--grey-border-color);
       border-radius: 0.25rem;
     }
@@ -61,7 +62,6 @@ export const LinkToOtherAuth = styled.p`
 //  Component
 
 const LogIn = () => {
-  const { user } = useContext(AuthContext);
   const router = useRouter();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -70,11 +70,7 @@ const LogIn = () => {
   const emailInputRef = useRef(null);
 
   useEffect(() => {
-    if (user.isLoggedIn) {
-      router.push("/");
-    } else {
-      emailInputRef.current.focus();
-    }
+    emailInputRef.current.focus();
   }, []);
 
   const handleSignIn = async (e: React.FormEvent) => {
@@ -138,4 +134,4 @@ const LogIn = () => {
   );
 };
 
-export default LogIn;
+export default WithoutAuth(LogIn);

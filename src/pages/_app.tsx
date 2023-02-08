@@ -25,9 +25,18 @@ export default function App({ Component, pageProps }: AppProps) {
         setUser({ isLoggedIn: false, userId: null, email: null });
       }
     });
-
+    checkUser();
     return () => subscription.unsubscribe();
   }, []);
+
+  async function checkUser() {
+    const {
+      data: { user },
+    } = await supabase.auth.getUser();
+    if (user) {
+      setUser({ isLoggedIn: true, userId: user.id, email: user.email });
+    }
+  }
   return (
     <AuthContext.Provider value={{ user, setUser }}>
       <Component {...pageProps} />

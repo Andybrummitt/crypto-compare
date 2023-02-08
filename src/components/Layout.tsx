@@ -15,6 +15,7 @@ const Container = styled.div`
 `;
 const Main = styled.main`
   flex: 1;
+  background: var(--main-bg);
 `;
 
 const Layout: React.FC<LayoutProps> = ({ children }) => {

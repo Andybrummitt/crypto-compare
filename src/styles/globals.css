@@ -6,7 +6,9 @@
   --dark-blue: #203ed6;
   --orange: #ff6d00;
   --grey-border-color: #dfe2e4;
-  --green: #21BF73;
+  --green: #21bf73;
+  --main-bg: #f8f9fa;
+  --card-box-shadow: 0 0 10px 4px #d0d0d0;
 }
 
 * {
@@ -24,4 +26,8 @@ body {
 
 a {
   text-decoration: none;
+}
+
+button {
+  cursor: pointer;
 }

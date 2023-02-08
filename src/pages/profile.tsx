@@ -3,6 +3,7 @@ import Head from "next/head";
 import Link from "next/link";
 import { useContext, useState } from "react";
 import styled from "styled-components";
+import WithAuth from "../components/hoc/WithAuth";
 import Layout from "../components/Layout";
 import { AuthContext } from "../contexts/AuthContext";
 import supabase from "../utils/supabaseClient";
@@ -13,7 +14,7 @@ const Container = styled.div`
   margin: 1rem auto;
   max-width: 400px;
   padding: 1rem;
-  box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.19);
+  box-shadow: var(--card-box-shadow);
   display: flex;
   flex-direction: column;
   > * {
@@ -44,7 +45,7 @@ const Button = styled.button`
 
 const DeleteContainer = styled.div`
   margin-top: 5rem;
-`
+`;
 
 const DeleteButton = styled(Button)`
   background: var(--red);
@@ -54,12 +55,15 @@ const PortfolioButton = styled(Button)`
   background: var(--green);
 `;
 
+//  Component
+
 const Profile = () => {
-  const { user } = useContext(AuthContext);
+  const { user, setUser } = useContext(AuthContext);
   const [error, setError] = useState("");
 
   const handleSignOut = async () => {
     const { error } = await supabase.auth.signOut();
+
     if (error) {
       setError(error.message);
     }
@@ -70,7 +74,11 @@ const Profile = () => {
       const response = await axios.post("/api/delete-user", {
         userId: user.userId,
       });
-      console.log(response.data);
+      setUser({
+        isLoggedIn: null,
+        email: "",
+        userId: "",
+      });
     } catch (error) {
       setError(error.message);
     }
@@ -103,8 +111,8 @@ const Profile = () => {
               Delete Account
             </DeleteButton>
             <WarningText>
-              Warning this method cannot be undone. Your account and portfolio will be
-              permanently deleted.
+              Warning this method cannot be undone. Your account and portfolio
+              will be permanently deleted.
             </WarningText>
           </DeleteContainer>
         </Container>
@@ -113,4 +121,4 @@ const Profile = () => {
   );
 };
 
-export default Profile;
+export default WithAuth(Profile);
