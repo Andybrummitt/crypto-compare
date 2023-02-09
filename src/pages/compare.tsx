@@ -108,7 +108,6 @@ const ComparePage: React.FC<Props> = ({ coins, error }) => {
 
 export const getServerSideProps: GetServerSideProps<Props> = async () => {
   let coins = [];
-  console.log("calling getserversideprops");
   try {
     const responseBitcoin = await axios.get(
       "https://api.coingecko.com/api/v3/coins/bitcoin"

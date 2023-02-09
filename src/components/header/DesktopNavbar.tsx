@@ -1,4 +1,4 @@
-import { useContext, useEffect } from "react";
+import { useContext } from "react";
 import { AiOutlinePieChart, AiOutlineUser } from "react-icons/ai";
 import styled from "styled-components";
 import { AuthContext } from "../../contexts/AuthContext";
@@ -63,9 +63,6 @@ export const Button = styled.button`
 const DesktopNavbar = () => {
   const { user } = useContext(AuthContext);
 
-  useEffect(() => {
-    console.log(user);
-  }, []);
   return (
     <Nav>
       <MarketsUl>
@@ -86,20 +83,20 @@ const DesktopNavbar = () => {
         </Li>
       </MarketsUl>
       {user.isLoggedIn ? (
-          <AuthUl>
-            <Li>
-              <NavLinkWithActive href="/portfolio">
-                <AuthIcon Icon={AiOutlinePieChart} />
-                <Span>Portfolio</Span>
-              </NavLinkWithActive>
-            </Li>
-            <Li>
-              <NavLinkWithActive href="/profile">
-                <AuthIcon Icon={AiOutlineUser} />
-                <Span>Profile</Span>
-              </NavLinkWithActive>
-            </Li>
-          </AuthUl>
+        <AuthUl>
+          <Li>
+            <NavLinkWithActive href="/portfolio">
+              <AuthIcon Icon={AiOutlinePieChart} />
+              <Span>Portfolio</Span>
+            </NavLinkWithActive>
+          </Li>
+          <Li>
+            <NavLinkWithActive href="/profile">
+              <AuthIcon Icon={AiOutlineUser} />
+              <Span>Profile</Span>
+            </NavLinkWithActive>
+          </Li>
+        </AuthUl>
       ) : (
         <AuthUl>
           <Li>

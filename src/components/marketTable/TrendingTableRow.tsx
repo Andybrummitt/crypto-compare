@@ -33,7 +33,6 @@ const TD = styled.td`
 //  Component
 
 const TrendingTableRow: React.FC<Props> = ({ coin, btcPrice }) => {
-
   //  Get $ Price of Coin by Calculating (Coin price % of BTC price) * (BTC Price in USD)
   const bitcoinToUsd = (coinPrice, btcPrice) => {
     return coinPrice * btcPrice;
@@ -55,7 +54,11 @@ const TrendingTableRow: React.FC<Props> = ({ coin, btcPrice }) => {
           </div>
         </CoinContainer>
       </TD>
-      <TD>{btcPrice ? `$${bitcoinToUsd(coin.price_btc, btcPrice).toFixed(5)}` : 'N/A'}</TD>
+      <TD>
+        {btcPrice
+          ? `$${bitcoinToUsd(coin.price_btc, btcPrice).toFixed(5)}`
+          : "N/A"}
+      </TD>
     </tr>
   );
 };

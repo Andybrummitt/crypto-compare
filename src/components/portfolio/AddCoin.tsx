@@ -30,11 +30,13 @@ export const PortfolioButton = styled.button`
 `;
 
 type Props = {
-  setCoins: Dispatch<React.SetStateAction<Coin[]>>;
+  coinNames: string[];
+  setCoinNames: Dispatch<React.SetStateAction<string[]>>;
+  setCoin: Dispatch<React.SetStateAction<any>>;
 };
 
-const AddCoin: React.FC<Props> = ({ setCoins }) => {
-  const [coin, setCoin] = useState<Coin | null>(null);
+const AddCoin: React.FC<Props> = ({ coinNames, setCoinNames, setCoin }) => {
+  const [coinFromSearch, setCoinFromSearch] = useState<Coin | null>(null);
   const [coinInput, setCoinInput] = useState("");
   const [fetchError, setFetchError] = useState("");
 
@@ -55,8 +57,8 @@ const AddCoin: React.FC<Props> = ({ setCoins }) => {
       const newCoinData = createCoinDataObj(responseNewCoin.data);
       setCoinInput("");
       setFetchError("");
-      setCoin(newCoinData);
-      console.log(responseNewCoin.data);
+      setCoinNames([...coinNames, parsedCoinInput]);
+      setCoinFromSearch(newCoinData);
     } catch (err) {
       if (err.response.status === 404) {
         setFetchError(
@@ -86,7 +88,15 @@ const AddCoin: React.FC<Props> = ({ setCoins }) => {
         </PortfolioButton>
         <ErrorMessage>{fetchError}</ErrorMessage>
       </Form>
-      {coin ? <CoinDataContainer coin={coin} setCoin={setCoin} /> : null}
+      {coinFromSearch ? (
+        <CoinDataContainer
+          setCoin={setCoin}
+          coin={coinFromSearch}
+          setCoinFromSearch={setCoinFromSearch}
+          coinNames={coinNames}
+          setFetchError={setFetchError}
+        />
+      ) : null}
     </>
   );
 };

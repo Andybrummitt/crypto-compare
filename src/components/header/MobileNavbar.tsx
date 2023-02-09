@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from "react";
+import React, { useContext } from "react";
 import { IconContext } from "react-icons";
 import { AiFillFire, AiOutlinePieChart, AiOutlineUser } from "react-icons/ai";
 import { MdCompareArrows } from "react-icons/md";
@@ -54,10 +54,6 @@ export const AuthIcon: React.FC<Props> = ({ Icon }) => {
 //  Navbar Component
 const MobileNavbar = () => {
   const { user } = useContext(AuthContext);
-
-  useEffect(() => {
-    console.log(user);
-  }, []);
   return (
     <Nav>
       <Ul>

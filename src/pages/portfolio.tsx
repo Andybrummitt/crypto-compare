@@ -1,27 +1,53 @@
 import Head from "next/head";
-import { useContext, useState } from "react";
-
+import { useContext, useEffect, useState } from "react";
 import styled from "styled-components";
 import WithAuth from "../components/hoc/WithAuth";
 import Layout from "../components/Layout";
 import AddCoin from "../components/portfolio/AddCoin";
+import PortfolioContainer from "../components/portfolio/PortfolioContainer";
 import { AuthContext } from "../contexts/AuthContext";
-import { Coin } from "./compare";
+import supabase from "../utils/supabaseClient";
 import { ErrorMessage } from "./index";
+
+//  Styles
 
 const Container = styled.div`
   width: 95%;
   margin: 1rem auto;
   max-width: 700px;
-  padding: 1rem;
+  padding: 0.5rem;
+  margin-bottom: 4rem;
 `;
 
 //  Component
 
 const Portfolio = () => {
   const { user } = useContext(AuthContext);
-  const [coins, setCoins] = useState<Coin[]>([]);
+  const [coin, setCoin] = useState(null);
   const [error, setError] = useState("");
+  const [coinsInDb, setCoinsInDb] = useState([]);
+  const [coinNames, setCoinNames] = useState([]);
+
+  const getUserCoins = async () => {
+    const { data, error } = await supabase.from("coin").select();
+
+    if (error) {
+      console.log(error);
+      setError(error.message);
+    } else {
+      setCoinsInDb(data);
+      //  set coin names from values in coinsindb
+      const coinNamesFromDb = data.map((coinData) => {
+        const coin = JSON.parse(coinData.coin);
+        return coin.name;
+      });
+      setCoinNames(coinNamesFromDb);
+    }
+  };
+
+  useEffect(() => {
+    getUserCoins();
+  }, [coin]);
 
   return (
     <>
@@ -38,12 +64,16 @@ const Portfolio = () => {
         <Container>
           <h1>Portfolio</h1>
           <ErrorMessage>{error}</ErrorMessage>
-          {coins.length < 1 ? (
+          {coinsInDb.length < 1 && coinNames.length < 1 ? (
             <p>You have no crypto in your portfolio</p>
           ) : (
-            <p>some coins</p>
+            <PortfolioContainer coins={coinsInDb} setCoin={setCoin} />
           )}
-          <AddCoin setCoins={setCoins} />
+          <AddCoin
+            coinNames={coinNames}
+            setCoinNames={setCoinNames}
+            setCoin={setCoin}
+          />
         </Container>
       </Layout>
     </>
