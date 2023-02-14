@@ -34,11 +34,11 @@ type Props = {
 //  Styles
 
 const H2 = styled.h2`
-  font-size: 1.2rem;
+  font-size: 1.5rem;
   margin: 1rem 0;
   text-align: center;
   @media (min-width: 700px) {
-    font-size: 1.7rem;
+    font-size: 2rem;
   }
 `;
 

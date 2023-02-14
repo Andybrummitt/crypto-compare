@@ -30,6 +30,15 @@ const Container = styled.div`
   }
 `;
 
+const H1 = styled.h1`
+  font-size: 1.5rem;
+  margin: 1rem 0;
+  text-align: center;
+  @media (min-width: 700px) {
+    font-size: 2rem;
+  }
+`;
+
 const WarningText = styled.p`
   color: var(--orange);
 `;
@@ -98,7 +107,7 @@ const Profile = () => {
       <Layout>
         <Container>
           <div>
-            <h1>Profile</h1>
+            <H1>Profile</H1>
             <p>Logged in as {user.email}</p>
           </div>
           <ErrorMessage>{error}</ErrorMessage>

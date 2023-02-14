@@ -46,6 +46,7 @@ const InnerContainer = styled.div`
   display: flex;
   & > div {
     padding: 0.25rem;
+    flex: 1;
     & > * {
       margin: 0.8rem 0;
     }
@@ -130,6 +131,11 @@ const CoinDataContainer: React.FC<Props> = ({
       );
       return;
     }
+    if (+amount <= 0) {
+      setFetchError("Please provide a positive value");
+      return;
+    }
+    setFetchError("");
     const { data, error } = await supabase.from("coin").insert([
       {
         coin: JSON.stringify(coin),
@@ -181,7 +187,7 @@ const CoinDataContainer: React.FC<Props> = ({
         </div>
         <div>
           <label htmlFor="amount_of_coins">
-            How much {coin.symbol} do you have?
+            How much {coin.symbol.toUpperCase()} do you have?
           </label>
           <input
             type="number"

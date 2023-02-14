@@ -19,6 +19,15 @@ const Container = styled.div`
   margin-bottom: 4rem;
 `;
 
+const H1 = styled.h1`
+  font-size: 1.5rem;
+  margin: 1rem 0;
+  text-align: center;
+  @media (min-width: 700px) {
+    font-size: 2rem;
+  }
+`;
+
 //  Component
 
 const Portfolio = () => {
@@ -62,7 +71,7 @@ const Portfolio = () => {
       </Head>
       <Layout>
         <Container>
-          <h1>Portfolio</h1>
+          <H1>Portfolio</H1>
           <ErrorMessage>{error}</ErrorMessage>
           {coinsInDb.length < 1 && coinNames.length < 1 ? (
             <p>You have no crypto in your portfolio</p>
