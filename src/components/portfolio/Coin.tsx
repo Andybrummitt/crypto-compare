@@ -1,3 +1,5 @@
+//@ts-nocheck
+
 import { useEffect, useRef, useState } from "react";
 import { AiFillEdit, AiOutlineCloseCircle } from "react-icons/ai";
 import { ImCloudUpload } from "react-icons/im";

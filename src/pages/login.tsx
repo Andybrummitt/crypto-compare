@@ -125,7 +125,7 @@ const LogIn = () => {
             <button type="submit">Log In</button>
           </Form>
           <LinkToOtherAuth>
-            Don't have an account?<Link href="/signup">Sign Up</Link>
+            Don&apos;t have an account?<Link href="/signup">Sign Up</Link>
           </LinkToOtherAuth>
           <ErrorMessage>{error}</ErrorMessage>
         </AuthContainer>

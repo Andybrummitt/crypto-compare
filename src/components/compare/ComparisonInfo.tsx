@@ -105,10 +105,10 @@ const getMultipleBackToATH = (percentAway: number) => {
 
 const ComparisonInfo: React.FC<Props> = ({ coins }) => {
   const { coin1, coin2 } = coins;
-  const xToATHCoin1 = getMultipleBackToATH(
+  const xToATHCoin1 = +getMultipleBackToATH(
     Math.abs(coin1.ath_change_percentage.usd)
   );
-  const xToATHCoin2 = getMultipleBackToATH(
+  const xToATHCoin2 = +getMultipleBackToATH(
     Math.abs(coin2.ath_change_percentage.usd)
   );
   return (
