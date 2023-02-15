@@ -11,10 +11,9 @@ const Header = styled.header`
   }
 `;
 
-const Logo = styled.h2`
-  font-weight: bold;
-  font-size: 1rem;
-  color: black;
+const Logo = styled.img`
+  width: auto;
+  height: 4rem;
 `;
 
 const LinksContainer = styled.div`
@@ -35,7 +34,7 @@ const MobileHeader = () => {
     <Header>
       <LinksContainer>
         <NavLink href="/">
-          <Logo>CryptoCompare</Logo>
+          <Logo alt="logo" src="/cryptocompare-logo.png" />
         </NavLink>
         {!user.isLoggedIn ? (
           <div>

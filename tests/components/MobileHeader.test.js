@@ -35,8 +35,7 @@ describe("Desktop Header Component", () => {
   }));
   it("Renders Nav Items Correctly", () => {
     render(<MobileHeader />);
-    screen.getByRole("heading", { name: "CryptoCompare" })
-    screen.getByRole("button", { name: "Log In" })
-    screen.getByRole("button", { name: "Sign Up" })
+    screen.getByRole("button", { name: "Log In" });
+    screen.getByRole("button", { name: "Sign Up" });
   });
 });

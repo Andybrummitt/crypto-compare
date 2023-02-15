@@ -10,8 +10,9 @@ const Header = styled.header`
   }
 `;
 
-const Logo = styled.span`
-  color: white;
+const Logo = styled.img`
+  width: auto;
+  height: 4rem;
 `;
 
 const LogoAndBrandingContainer = styled.div`
@@ -26,7 +27,7 @@ const DesktopHeader = () => {
     <Header>
       <LogoAndBrandingContainer>
         <NavLink href={"/"}>
-          <Logo>CryptoCompare</Logo>
+          <Logo alt="logo" src="/cryptocompare-logo-white.png" />
         </NavLink>
         <BrandingContainer />
       </LogoAndBrandingContainer>

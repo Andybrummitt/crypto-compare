@@ -97,7 +97,7 @@ const LogIn = () => {
           content="Easily compare cryptocurrencies to one another!"
         />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <link rel="icon" href="/favicon.ico" />
+        <link rel="icon" href="/bitcoin.png" />
       </Head>
       <Layout>
         <AuthContainer>
