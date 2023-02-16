@@ -82,6 +82,7 @@ const LogIn = () => {
     });
 
     if (error) {
+      console.log(error);
       setError(error.message);
     } else {
       router.push("/");
