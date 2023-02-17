@@ -139,7 +139,7 @@ const CoinDataContainer: React.FC<Props> = ({
     const { data, error } = await supabase.from("coin").insert([
       {
         coin: JSON.stringify(coin),
-        amount: parseInt(amount),
+        amount: parseFloat(amount),
         user_id: user.user.userId,
       },
     ]);
