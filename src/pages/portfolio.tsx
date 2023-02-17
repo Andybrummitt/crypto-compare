@@ -73,7 +73,7 @@ const Portfolio = () => {
         <Container>
           <H1>Portfolio</H1>
           <ErrorMessage>{error}</ErrorMessage>
-          {coinsInDb.length < 1 && coinNames.length < 1 ? (
+          {coinsInDb.length < 1 ? (
             <p>You have no crypto in your portfolio</p>
           ) : (
             <PortfolioContainer coins={coinsInDb} setCoin={setCoin} />

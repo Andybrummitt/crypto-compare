@@ -10,6 +10,9 @@ import CoinDataContainer from "./CoinDataContainer";
 
 const Form = styled.form`
   margin-top: 1rem;
+  max-width: 615px;
+  margin-left: auto;
+  margin-right: auto;
   & > input {
     padding: 0.25rem;
     border-radius: 0.25rem;
@@ -48,7 +51,7 @@ const AddCoin: React.FC<Props> = ({ coinNames, setCoinNames, setCoin }) => {
     }
     try {
       //  Parse input for API request
-      const parsedCoinInput = coinInput.replace(/ /g, "-");
+      const parsedCoinInput = coinInput.replace(/ /g, "-").toLowerCase();
 
       //  Get New Coin Data
       const responseNewCoin = await axios.get(

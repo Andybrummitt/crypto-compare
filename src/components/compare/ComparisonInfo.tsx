@@ -63,18 +63,22 @@ const MultipleContainer = styled.span`
   font-weight: bold;
 `;
 
+const CoinImg = styled.img`
+  margin-left: 0.2rem;
+`;
+
 const returnHigherData = (coins, method: string) => {
   const { coin1, coin2 } = coins;
 
   return coin1[method] > coin2[method] ? (
     <span>
       {coin1.name}
-      <img src={coin1.image.thumb} alt={coin1.name} />
+      <CoinImg src={coin1.image.thumb} alt={coin1.name} />
     </span>
   ) : coin2[method] > coin1[method] ? (
     <span>
       {coin2.name}
-      <img src={coin2.image.thumb} alt={coin2.name} />
+      <CoinImg src={coin2.image.thumb} alt={coin2.name} />
     </span>
   ) : (
     `${coin1.name} = ${coin2.name}`
@@ -87,12 +91,12 @@ const returnHigherMarketCap = (coins) => {
   return coin1.market_cap.usd > coin2.market_cap.usd ? (
     <span>
       {coin1.name}
-      <img src={coin1.image.thumb} alt={coin1.name} />
+      <CoinImg src={coin1.image.thumb} alt={coin1.name} />
     </span>
   ) : coin2.market_cap.usd > coin1.market_cap.usd ? (
     <span>
       {coin2.name}
-      <img src={coin2.image.thumb} alt={coin2.name} />
+      <CoinImg src={coin2.image.thumb} alt={coin2.name} />
     </span>
   ) : (
     `${coin1.name} = ${coin2.name}`

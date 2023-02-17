@@ -107,9 +107,10 @@ const SingleCoinContainer: React.FC<Props> = ({
       setFetchError("Coin Required.");
       return;
     }
+    let parsedCoinInput;
     try {
       //  Parse input for API request
-      const parsedCoinInput = coinInput.replace(/ /g, "-");
+      parsedCoinInput = coinInput.replace(/ /g, "-").toLowerCase();
       //  Get New Coin Data
       const responseNewCoin = await axios.get(
         `https://api.coingecko.com/api/v3/coins/${parsedCoinInput}`
@@ -124,6 +125,12 @@ const SingleCoinContainer: React.FC<Props> = ({
         setCoinsToCompare((coins) => ({ ...coins, coin2: newCoinData }));
       }
     } catch (err) {
+      if (err.response.status === 404) {
+        setFetchError(
+          `Cannot find '${parsedCoinInput}'. Please check the spelling of the coin you wish to compare.`
+        );
+        return;
+      }
       console.log(err);
       setCoinInput("");
       setFetchError(err.message);
@@ -168,7 +175,7 @@ const SingleCoinContainer: React.FC<Props> = ({
           Market Cap Rank: <BoldSpan>{coin.market_cap_rank}</BoldSpan>
         </li>
         <li>
-          Price: $<BoldSpan>{coin.current_price.usd}</BoldSpan>
+          Price: <BoldSpan>${coin.current_price.usd}</BoldSpan>
         </li>
       </StatsUl>
       <PriceActivityContainer coin={coin} />

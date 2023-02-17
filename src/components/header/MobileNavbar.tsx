@@ -17,6 +17,7 @@ const Nav = styled.nav`
   @media (min-width: 700px) {
     display: none;
   }
+  border-top: 1px solid var(--grey-border-color);
 `;
 
 const Ul = styled.ul`

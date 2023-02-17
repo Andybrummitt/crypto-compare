@@ -12,7 +12,7 @@ const Header = styled.header`
 
 const Logo = styled.img`
   width: auto;
-  height: 4rem;
+  height: 3rem;
 `;
 
 const LogoAndBrandingContainer = styled.div`
