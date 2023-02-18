@@ -9,11 +9,11 @@ The project is hosted on [Vercel.](https://crypto-compare-one.vercel.app/)
 ## Project Screenshots
 
 <div style="display: flex; justify-content: space-between; flex-wrap: wrap;">
-    <img src="https://user-images.githubusercontent.com/57725070/219857928-c3907bf3-905b-4200-9fd1-fcdd3eaf91fe.PNG" alt="markets-page" style="width: 150px; height: auto;"/>
-    <img src="https://user-images.githubusercontent.com/57725070/219857921-7d9dc5d9-9e39-4d85-8c5e-58f70f73607d.PNG" alt="portfolio-page" style="width: 150px; height: auto;"/>
-    <img src="https://user-images.githubusercontent.com/57725070/219857923-751b63d8-68ef-419a-b0fd-cbbbe846ff4a.PNG" alt="trending-page" style="width: 150px; height: auto;"/>
-    <img src="https://user-images.githubusercontent.com/57725070/219857925-881ce244-8aa7-4131-8b40-292491f42ca8.PNG" alt="compare-page" style="width: 150px; height: auto;"/>
-    <img src="https://user-images.githubusercontent.com/57725070/219857927-79bc3ba6-cbac-4c06-93ea-2d342d95d9fe.PNG" alt="compare-page2" style="width: 150px; height: auto;"/>
+    <img src="https://user-images.githubusercontent.com/57725070/219857928-c3907bf3-905b-4200-9fd1-fcdd3eaf91fe.PNG" alt="markets-page" style="width: 150px; height: auto; margin: 0 1rem;"/>
+    <img src="https://user-images.githubusercontent.com/57725070/219857923-751b63d8-68ef-419a-b0fd-cbbbe846ff4a.PNG" alt="trending-page" style="width: 150px; height: auto; margin: 0 1rem;"/>
+    <img src="https://user-images.githubusercontent.com/57725070/219857925-881ce244-8aa7-4131-8b40-292491f42ca8.PNG" alt="compare-page" style="width: 150px; height: auto; margin: 0 1rem;"/>
+    <img src="https://user-images.githubusercontent.com/57725070/219857927-79bc3ba6-cbac-4c06-93ea-2d342d95d9fe.PNG" alt="compare-page2" style="width: 150px; height: auto; margin: 0 1rem;"/>
+    <img src="https://user-images.githubusercontent.com/57725070/219857921-7d9dc5d9-9e39-4d85-8c5e-58f70f73607d.PNG" alt="portfolio-page" style="width: 150px; height: auto; margin: 0 1rem;"/>
 </p>
 
 ## How I organized this project
