@@ -1,4 +1,4 @@
-@import url("https://fonts.googleapis.com/css2?family=Poppins&display=swap");
+@import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
 
 :root {
   --primary: #0063f5;
@@ -21,13 +21,19 @@ html,
 body {
   max-width: 100vw;
   overflow-x: hidden;
-  font-family: "Poppins", sans-serif;
+  font-family: 'Poppins', sans-serif;
 }
 
 a {
   text-decoration: none;
+  color: inherit;
 }
 
 button {
   cursor: pointer;
+}
+
+.no-hover {
+  pointer-events: none;
+  cursor: default;
 }

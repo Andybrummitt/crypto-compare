@@ -1,18 +1,14 @@
-import { useContext } from "react";
-import { AiOutlinePieChart, AiOutlineUser } from "react-icons/ai";
-import styled from "styled-components";
-import { AuthContext } from "../../contexts/AuthContext";
-import NavLinkWithActive from "../NavLinkWithActive";
-import { AuthIcon } from "./MobileNavbar";
+import { useContext } from 'react';
+import { AiOutlinePieChart, AiOutlineUser } from 'react-icons/ai';
+import styled from 'styled-components';
+import { AuthContext } from '../../contexts/AuthContext';
+import NavLinkWithActive from '../NavLinkWithActive';
+import { AuthIcon } from './MobileNavbar';
 
 //  Styles
 const Nav = styled.nav`
   background: #ffffff;
   height: 4rem;
-  display: flex;
-`;
-
-const LinksContainer = styled.div`
   display: flex;
 `;
 

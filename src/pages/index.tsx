@@ -1,9 +1,9 @@
-import axios from "axios";
-import { GetServerSideProps } from "next";
-import Head from "next/head";
-import styled from "styled-components";
-import Layout from "../components/Layout";
-import Top100Table from "../components/marketTable/Top100Table";
+import axios from 'axios';
+import { GetServerSideProps } from 'next';
+import Head from 'next/head';
+import styled from 'styled-components';
+import Layout from '../components/Layout';
+import Top100Table from '../components/marketTable/Top100Table';
 
 export type Coin = {
   market_cap_rank: number;
@@ -27,7 +27,8 @@ type Props = {
 const H1 = styled.h1`
   font-size: 1.5rem;
   margin: 1rem 0;
-  text-align: center;
+  margin: 2rem;
+  border-bottom: 0.2rem solid #0063f5;
   @media (min-width: 700px) {
     font-size: 2rem;
   }
@@ -52,7 +53,7 @@ const HomePage: React.FC<Props> = ({ coins, error }) => {
         <link rel="icon" href="/bitcoin.png" />
       </Head>
       <Layout>
-        <H1>Top 100 Coins</H1>
+        <H1>Markets</H1>
         {error ? (
           <ErrorMessage>{error}</ErrorMessage>
         ) : (
@@ -67,7 +68,7 @@ export const getServerSideProps: GetServerSideProps<Props> = async () => {
   let coins = [];
   try {
     const res = await axios.get(
-      "https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&order=market_cap_desc&per_page=100&page=1&sparkline=false"
+      'https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&order=market_cap_desc&per_page=100&page=1&sparkline=false'
     );
     coins = res.data as Coin[];
     return {
@@ -80,7 +81,7 @@ export const getServerSideProps: GetServerSideProps<Props> = async () => {
     return {
       props: {
         coins: null,
-        error: "Oops! Unable to fetch market data",
+        error: 'Oops! Unable to fetch market data',
       },
     };
   }

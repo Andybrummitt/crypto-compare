@@ -1,29 +1,13 @@
-import styled from "styled-components";
-
-const THead = styled.thead`
-  background-color: #f8f9fa;
-`;
+import styles from './market-table.module.scss';
 
 //  First two table headers sticky positioned for scroll;
 
-const FirstTHSticky = styled.th`
-  position: sticky;
-  left: 0;
-  background-color: #f8f9fa;
-`;
-
-const SecondTHSticky = styled.th`
-  position: sticky;
-  left: 4%;
-  background-color: #f8f9fa;
-`;
-
 const Top100TableHead = () => {
   return (
-    <THead>
-      <tr>
-        <FirstTHSticky>#</FirstTHSticky>
-        <SecondTHSticky>Coin</SecondTHSticky>
+    <thead>
+      <tr className="no-hover">
+        <th className={styles.rank_th_sticky}>#</th>
+        <th className={styles.coin_info_th_sticky}>Coin</th>
         <th>Price</th>
         <th>24h</th>
         <th>ATH Change</th>
@@ -31,8 +15,9 @@ const Top100TableHead = () => {
         <th>Circulating Supply</th>
         <th>Max Supply</th>
         <th>% Diluted</th>
+        <th>Add to watchlist</th>
       </tr>
-    </THead>
+    </thead>
   );
 };
 

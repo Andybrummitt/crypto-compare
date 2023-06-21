@@ -1,0 +1,157 @@
+.table_container {
+  overflow-x: scroll;
+  width: 95%;
+  max-width: 1400px;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 4rem;
+  height: 800px;
+}
+
+@media (min-width: 1400px) {
+  .table-container {
+    overflow-x: hidden;
+  }
+}
+@media (max-width: 768px) {
+  .table-container {
+    height: 500px;
+  }
+}
+
+.table td {
+  padding: 0.5rem;
+  text-align: center;
+  border-bottom: 1px solid #ddd;
+}
+
+.table thead {
+  background: linear-gradient(to bottom, #0063f5, #1e90ff);
+  position: sticky;
+  z-index: 1;
+  top: 0;
+  color: white;
+  width: 100%;
+}
+
+.table {
+  border-collapse: collapse;
+  margin: 20px 0;
+  background: white;
+  width: 100%;
+}
+
+@media screen and (max-width: 1024px) {
+  .table {
+    overflow-y: auto;
+  }
+}
+
+.table thead th {
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
+  font-weight: normal;
+}
+
+.table tr:not(.no-hover):hover {
+  cursor: pointer;
+  &:hover {
+    background: #f4f4f4;
+  }
+}
+
+.watchlist_button {
+  cursor: pointer;
+  background: transparent;
+  border: none;
+  transition: 0.25s ease;
+  &:hover > svg {
+    fill: #6c757d;
+  }
+}
+
+.rank_td_sticky,
+.coin_info_td_sticky {
+  padding: 0.5rem;
+  text-align: center;
+  position: sticky;
+  left: 0;
+}
+
+@media screen and (max-width: 768px) {
+  .rank_td_sticky,
+  .coin_info_td_sticky {
+    background: white;
+  }
+}
+
+.rank_th_sticky {
+  @extend .rank_td_sticky;
+  background: linear-gradient(to bottom, #0063f5, #1e90ff);
+}
+
+.coin_info_td_sticky {
+  left: 4%;
+  padding: 0.5rem 0.5rem 0 0.5rem;
+}
+
+.coin_info_th_sticky {
+  @extend .coin_info_td_sticky;
+  background: linear-gradient(to bottom, #0063f5, #1e90ff);
+}
+
+.coin_info_container {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+.coin_info_container div {
+  margin-left: 1rem;
+  text-align: left;
+}
+
+.coin_info_container span {
+  font-size: 0.8rem;
+}
+
+.table_search_container {
+  margin-left: auto;
+  position: relative;
+}
+
+.table_search_container svg {
+  position: absolute;
+  top: 20%;
+  left: 87%;
+  background: white;
+}
+
+.table_search_container input {
+  padding: 0.5rem;
+  font-size: 1rem;
+  display: block;
+  border-radius: 0.5rem;
+  border: 0.1rem solid var(--grey-border-color);
+}
+
+.top_100_coins_title_search_container {
+  display: flex;
+  width: 95%;
+  max-width: 1400px;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 1rem;
+}
+
+@media screen and (max-width: 768px) {
+  .top_100_coins_title_search_container {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .table_search_container {
+    margin-left: 0;
+    margin-top: 1rem;
+  }
+}
