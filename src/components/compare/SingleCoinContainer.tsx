@@ -1,12 +1,12 @@
-import axios from "axios";
-import Image from "next/image";
-import { Dispatch, useEffect, useRef, useState } from "react";
-import styled from "styled-components";
-import { v4 as uuidv4 } from "uuid";
-import { Coin, createCoinDataObj } from "../../pages/compare";
-import { ErrorMessage } from "../../pages/index";
-import { convertPriceToUnits } from "../../utils/marketCalculations";
-import PriceActivityContainer from "./PriceActivityContainer";
+import axios from 'axios';
+import Image from 'next/image';
+import { Dispatch, useEffect, useRef, useState } from 'react';
+import styled from 'styled-components';
+import { v4 as uuidv4 } from 'uuid';
+import { Coin, createCoinDataObj } from '../../pages/compare';
+import { ErrorMessage } from '../../pages/index';
+import { convertPriceToUnits } from '../../utils/marketCalculations';
+import PriceActivityContainer from './PriceActivityContainer';
 
 type Props = {
   coins: { coin1: Coin; coin2: Coin };
@@ -46,7 +46,7 @@ const BoldSpan = styled.span`
   font-weight: bold;
 `;
 
-const CategoriesUl = styled.ul`
+export const CategoriesUl = styled.ul`
   display: flex;
   justify-content: flex-start;
   align-items: center;
@@ -86,9 +86,9 @@ const SingleCoinContainer: React.FC<Props> = ({
   coins,
   setCoinsToCompare,
 }) => {
-  const [coinInput, setCoinInput] = useState("");
+  const [coinInput, setCoinInput] = useState('');
   const [coinNum, setCoinNum] = useState(0);
-  const [fetchError, setFetchError] = useState("");
+  const [fetchError, setFetchError] = useState('');
 
   const inputRef = useRef(null);
 
@@ -104,20 +104,20 @@ const SingleCoinContainer: React.FC<Props> = ({
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (coinInput.length < 1) {
-      setFetchError("Coin Required.");
+      setFetchError('Coin Required.');
       return;
     }
     let parsedCoinInput;
     try {
       //  Parse input for API request
-      parsedCoinInput = coinInput.replace(/ /g, "-").toLowerCase();
+      parsedCoinInput = coinInput.replace(/ /g, '-').toLowerCase();
       //  Get New Coin Data
       const responseNewCoin = await axios.get(
         `https://api.coingecko.com/api/v3/coins/${parsedCoinInput}`
       );
       const newCoinData = createCoinDataObj(responseNewCoin.data);
-      setCoinInput("");
-      setFetchError("");
+      setCoinInput('');
+      setFetchError('');
       //  Set New State depending on which coin has changed
       if (coinNum === 1) {
         setCoinsToCompare((coins) => ({ ...coins, coin1: newCoinData }));
@@ -132,7 +132,7 @@ const SingleCoinContainer: React.FC<Props> = ({
         return;
       }
       console.log(err);
-      setCoinInput("");
+      setCoinInput('');
       setFetchError(err.message);
     }
   };
@@ -146,7 +146,7 @@ const SingleCoinContainer: React.FC<Props> = ({
             width={32}
             alt={coin.symbol}
             src={coin.image.thumb}
-          />{" "}
+          />{' '}
           <span>{coin.symbol.toUpperCase()}</span>
         </HeadingContainer>
       </div>
@@ -168,7 +168,7 @@ const SingleCoinContainer: React.FC<Props> = ({
       {fetchError && <ErrorMessage>{fetchError}</ErrorMessage>}
       <StatsUl>
         <li>
-          Market Cap:{" "}
+          Market Cap:{' '}
           <BoldSpan>{convertPriceToUnits(coin.market_cap.usd)}</BoldSpan>
         </li>
         <li>

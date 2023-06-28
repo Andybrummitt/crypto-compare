@@ -36,11 +36,11 @@ const Top100TableRow: React.FC<Props> = ({ coin }) => {
 
   const addToWatchList = (ev) => {
     ev.stopPropagation();
-    alert('added to watch list');
+    alert('Feature in development');
   };
 
   const redirectToCoin = (coin) => {
-    router.push(`/coins/${coin.name}`);
+    router.push(`/coins/${coin.name.replace(/ /g, '-').toLowerCase()}`);
   };
 
   //  Get % of Diluted Market Cap

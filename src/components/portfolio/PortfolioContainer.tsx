@@ -1,6 +1,6 @@
-import { useEffect, useState } from "react";
-import styled from "styled-components";
-import Coin from "./Coin";
+import { useEffect, useState } from 'react';
+import styled from 'styled-components';
+import Coin from './Coin';
 
 const Container = styled.div`
   overflow-x: auto;
@@ -44,7 +44,6 @@ const PortfolioContainer = ({ coins, setCoin }) => {
   const [totalPortfolioValue, setTotalPortfolioValue] = useState(0);
   useEffect(() => {
     //  Get total value of all coins from portfolio in usd
-    console.log(coins);
     let totalValue = coins
       .map((coin) => {
         const parsedCoin = JSON.parse(coin.coin);

@@ -1,15 +1,15 @@
-import React, { Dispatch, useContext, useState } from "react";
-import { AiOutlinePlus } from "react-icons/ai";
-import styled from "styled-components";
-import { v4 as uuidv4 } from "uuid";
-import { AuthContext } from "../../contexts/AuthContext";
-import { ErrorMessage } from "../../pages";
-import { Coin } from "../../pages/compare";
+import React, { Dispatch, useContext, useState } from 'react';
+import { AiOutlinePlus } from 'react-icons/ai';
+import styled from 'styled-components';
+import { v4 as uuidv4 } from 'uuid';
+import { AuthContext } from '../../contexts/AuthContext';
+import { ErrorMessage } from '../../pages';
+import { Coin } from '../../pages/compare';
 import {
   convertPriceToUnits,
   getPriceDirection,
-} from "../../utils/marketCalculations";
-import supabase from "../../utils/supabaseClient";
+} from '../../utils/marketCalculations';
+import supabase from '../../utils/supabaseClient';
 
 //  Styles
 
@@ -121,22 +121,22 @@ const CoinDataContainer: React.FC<Props> = ({
   setCoin,
 }) => {
   const user = useContext(AuthContext);
-  const [postError, setPostError] = useState("");
-  const [amount, setAmount] = useState("");
+  const [postError, setPostError] = useState('');
+  const [amount, setAmount] = useState('');
 
   const handleAddCoinToDb = async () => {
     if (coinNames.includes(coin.name)) {
       setFetchError(
-        "You already have a coin with that name in your portfolio. Click the coin to edit the data."
+        'You already have a coin with that name in your portfolio. Click the coin to edit the data.'
       );
       return;
     }
     if (+amount <= 0) {
-      setFetchError("Please provide a positive value");
+      setFetchError('Please provide a positive value');
       return;
     }
-    setFetchError("");
-    const { data, error } = await supabase.from("coin").insert([
+    setFetchError('');
+    const { data, error } = await supabase.from('coin').insert([
       {
         coin: JSON.stringify(coin),
         amount: parseFloat(amount),
@@ -177,7 +177,7 @@ const CoinDataContainer: React.FC<Props> = ({
             {convertPriceToUnits(coin.market_cap.usd)}
           </p>
           <p>
-            <BoldSpan>Price 24h:</BoldSpan>{" "}
+            <BoldSpan>Price 24h:</BoldSpan>{' '}
             <PercentageContainer
               className={getPriceDirection(coin.price_change_percentage_24h)}
             >
